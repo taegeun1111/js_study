@@ -21,7 +21,7 @@ var scliceFoods = foodList.slice(1, 4); //foodList[] 1번부터 4번 미만까�
 console.log(scliceFoods); //[ '볶음밥', '짜장면', '족발' ] => 복사해서 반환
 
 var sliceFood2 = foodList.slice(2); // foodListp[] 2번부터 끝까지 추출
-console.log(sliceFood2); //[ '볶음밥', '짜장면', '족발' ] => 복사해서 반환
+console.log(sliceFood2); //[ '짜장면', '족발', '오뎅', '순대국밥' ] => 복사해서 반환
 
 var sliceFood3 = foodList.slice(); // 원본 배열 그대로 복사
 console.log(sliceFood3); //[ '닭꼬치', '볶음밥', '짜장면', '족발', '오뎅', '순대국밥' ]
@@ -48,8 +48,8 @@ var resultFlag = foodList.includes("닭꼬치");
 console.log(resultFlag);
 
 //splice() : 배열의 특정요소 제거, 삽입 => 원본 반영
-foodList.splice(3, 1);
-console.log(foodList); //[ '닭꼬치', '볶음밥', '짜장면', '오뎅', '순대국밥' ]
+var splicefood = foodList.splice(3, 1);
+console.log(splicefood); //[ '닭꼬치', '볶음밥', '짜장면', '오뎅', '순대국밥' ]
 
 foodList.splice(0, 1, "보쌈");
 console.log(foodList); //[ '보쌈', '볶음밥', '짜장면', '오뎅', '순대국밥' ]
