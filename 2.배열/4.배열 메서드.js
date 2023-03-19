@@ -48,6 +48,8 @@ var resultFlag = foodList.includes("닭꼬치");
 console.log(resultFlag);
 
 //splice() : 배열의 특정요소 제거, 삽입 => 원본 반영
+console.log("----------------------------------------");
+console.log(foodList);
 var splicefood = foodList.splice(3, 1);
 console.log(splicefood); //[ '닭꼬치', '볶음밥', '짜장면', '오뎅', '순대국밥' ]
 
