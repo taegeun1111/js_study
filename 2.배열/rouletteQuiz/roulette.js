@@ -1,5 +1,5 @@
 playerName = [];
-rouletteCount = 0;
+rouletteCount = 6;
 
 //게임 인원 설정 (n명)
 while (true) {
@@ -18,12 +18,12 @@ while (true) {
   }
 
   //게임 시작 (초기배열 6명 생존 -> Math.random으로 'kill' 배열에 넣고, 반복)
-  var roulette = [ture, ture, ture, ture, ture, ture];
+  var roulette = [true, true, true, true, true, true];
   for (var j = 0; j < bulletNum; j++) {
     //실탄 채우기(배열 : rouletteDie로 6개 중 랜덤으로 총알 넣기)
     var rouletteRandom = Math.floor(Math.random() * 6); //3
     //random값이 겹칠 경우 j--후 다시 반복, 'kill'추가
-    if (roulette[rouletteRandom] === ture) {
+    if (roulette[rouletteRandom] === true) {
       roulette.splice(rouletteRandom, 1, false);
     } else {
       j--;
@@ -35,14 +35,15 @@ while (true) {
   // alert(`총을 받았습니다. ${playerName[playerRandom]}부터 시작합니다.`);
 
   // 게임 시작
+  //종료조건 : 사람이 1명 남았을때, 총알이 모두 소진되었을때
   while (true) {
     var playerRandom = Math.floor(Math.random() * gamePeople);
     alert(
       `${playerName[playerRandom]}님의 턴!] 탄창을 회전합니다.\n엔터를 누르면 격발합니다.`
     );
-    if (playerName.length === 0 || roulette > 7) {
+    if (playerName.length === 1 || roulette === 0) {
       break;
-    } else if (roulette[rouletteCount] === ture) {
+    } else if (roulette[rouletteCount] === true) {
       alert(`...휴~살았습니다.`);
       rouletteCount++;
     } else if (roulette[i] === false) {
@@ -54,5 +55,3 @@ while (true) {
   alert(roulette);
   break;
 }
-
-//종료조건 : 사람이 1명 남았을때, 총알이 모두 소진되었을때
