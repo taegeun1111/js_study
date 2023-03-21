@@ -11,21 +11,21 @@ const userList = [
     userName: "빠나나",
     job: "과일",
     address: "서울",
-    hobbys: ["수영", "테니스"],
+    hobbys: ["푸드", "테니스"],
   },
   {
     account: "park1234",
     userName: "주차왕",
     job: "발렛파킹",
     address: "경기",
-    hobbys: ["수영", "축구", "테니스", "영화감상"],
+    hobbys: ["족구", "축구", "테니스", "영화감상"],
   },
   {
     account: "fire",
     userName: "불꽃남자카리스마",
     job: "게이머",
     address: "서울",
-    hobbys: ["축구", "테니스"],
+    hobbys: ["볼링", "테니스"],
   },
 ];
 
@@ -146,14 +146,83 @@ console.log(userNames);
 
 // userList에서 원하는 프로퍼티 값을 매핑하는 함수를 정의
 console.log("---------------------------");
-function myMap(mapping) {
-  const mappingArr = [];
+
+function myMap(callback) {
+  const mappedArray = [];
   for (const user of userList) {
-    if (mapping(user)) {
-      mappingArr.push(user);
-    }
+    mappedArray.push(callback(user));
   }
-  return mappingArr;
+  return mappedArray;
 }
-const userNames1 = userList.myMap((user) => user.userName);
-console.log(userNames1);
+const userNames2 = myMap((user) => ({
+  userName: user.userName,
+  address: user.address,
+}));
+console.log(userNames2);
+
+console.log("----------------------------");
+
+const appleBasket = [
+  {
+    color: "green",
+    sweet: 13,
+  },
+  {
+    color: "red",
+    sweet: 14,
+  },
+  {
+    color: "red",
+    sweet: 11,
+  },
+  {
+    color: "green",
+    sweet: 16,
+  },
+  {
+    color: "green",
+    sweet: 7,
+  },
+  {
+    color: "green",
+    sweet: 9,
+  },
+  {
+    color: "green",
+    sweet: 13,
+  },
+];
+
+//요구사항 : 사과 중 녹색이면서 당도가 9이상인 사과만 선별하여
+// 이 사과는 xxx색이며 당도가 xxx입니다.
+// 라는 문자열이 모여있는 배열을 리턴하세요.
+
+// const filteredApples = appleBasket.filter(
+//   (apple) => apple.color === "green" && apple.sweet >= 9
+// );
+// console.log(filteredApples);
+// const mappedApples = filteredApples.map(
+//   (apple) => `이 사과는 ${apple.color}색이며 당도가 ${apple.sweet}입니다.`
+// );
+
+const mappedApples = appleBasket
+  .filter((apple) => apple.color === "green" && apple.sweet >= 9)
+  .map(
+    (apple) => `이 사과는 ${apple.color}색이며 당도가 ${apple.sweet}입니다.`
+  );
+console.log(mappedApples);
+
+console.log("-----------------------------------");
+//userList에서 서울사는 user들의
+//첫번째 취미만 배열에 모아서 리턴
+//회원의 첫번째 취미는 xxx입니다.
+
+userList
+  .filter((hobby) => hobby.address === "서울")
+  .map((hobby) => ({
+    firstHobby: hobby.hobbys[0],
+    name: hobby.userName,
+  }))
+  .forEach((info) => {
+    console.log(`${info.name}회원의 첫번째 취미는 ${info.firstHobby}입니다.`);
+  });
