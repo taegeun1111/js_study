@@ -1,5 +1,5 @@
 playerName = [];
-rouletteCount = 6;
+rouletteCount = 0;
 
 //게임 인원 설정 (n명)
 while (true) {
@@ -7,6 +7,7 @@ while (true) {
   //2~4명이 아닐 경우 다시 돌아가기
   if (gamePeople < 2 || gamePeople > 4 || gamePeople === NaN) {
     alert("2 ~ 4명 사이의 값을 입력해주세요!");
+    continue;
   } else {
     //플레이어 이름 등록
     for (var i = 0; i < gamePeople; i++) {
@@ -29,29 +30,56 @@ while (true) {
       j--;
     }
   }
-  // while (true) {
-  // 인원 정하기
 
-  // alert(`총을 받았습니다. ${playerName[playerRandom]}부터 시작합니다.`);
+  // 인원 정하기
+  //                                                                                                                                                                                                        alert(`총을 받았습니다. ${playerName[playerRandom]}부터 시작합니다.`);
 
   // 게임 시작
+  var playerRandom = Math.floor(Math.random() * gamePeople);
+  var playArr1 = playerName.slice(playerRandom);
+  var playArr2 = playerName.slice(0, playerRandom);
+  var addArr = playArr1.concat(playArr2);
+  var deathCount = 0;
+  alert(`총을 받았습니다.${addArr[0]}부터 시작합니다.}`);
   //종료조건 : 사람이 1명 남았을때, 총알이 모두 소진되었을때
-  while (true) {
-    var playerRandom = Math.floor(Math.random() * gamePeople);
-    alert(
-      `${playerName[playerRandom]}님의 턴!] 탄창을 회전합니다.\n엔터를 누르면 격발합니다.`
-    );
-    if (playerName.length === 1 || roulette === 0) {
-      break;
-    } else if (roulette[rouletteCount] === true) {
-      alert(`...휴~살았습니다.`);
-      rouletteCount++;
-    } else if (roulette[i] === false) {
-      alert(`빵!! [${playerName[playerRandom]}]님 사망...`);
-      playerName.splice(playerName, 1);
+  while (bulletNum !== deathCount) {
+    for (var i = 0; i < addArr.length; i++) {
+      alert(
+        `${addArr[i]}님의 턴!] 탄창을 회전합니다.\n엔터를 누르면 격발합니다.`
+      );
+      if (roulette[rouletteCount] === true) {
+        alert(`...휴~살았습니다.`);
+        rouletteCount++;
+      } else if (roulette[rouletteCount] === false) {
+        alert(`빵!! [${addArr[i]}]님 사망...`);
+        addArr.splice(i, 1);
+        rouletteCount++;
+        deathCount++;
+        i--;
+      }
+      if (bulletNum === deathCount) {
+        break;
+      }
     }
   }
-  // }
-  alert(roulette);
+  alert(
+    `실탄이 모두 소진되었습니다. 게임을 종료합니다. \n생존한 인원 : ${addArr}`
+  );
   break;
 }
+
+// if (playerName.length === 1 || roulette === 6) {
+//   alert(`${playerName}님의 승리`);
+//   break;
+// } else {
+//   alert(
+//     `${playerName[playerRandom]}님의 턴!] 탄창을 회전합니다.\n엔터를 누르면 격발합니다.`
+//   );
+//   if (roulette[rouletteCount] === true) {
+//     alert(`...휴~살았습니다.`);
+//     rouletteCount++;
+//   } else if (roulette[rouletteCount] === false) {
+//     alert(`빵!! [${playerName[playerRandom]}]님 사망...`);
+//     playerName.splice(playerRandom, 1);
+//   }
+// }

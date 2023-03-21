@@ -28,29 +28,30 @@ var userInfo = {
     },
   ],
 };
+var userList = userInfo.userList;
 
-var user = userInfo.userList;
-var inputId = prompt(`아이디를 입력하세요`);
-
-// alert(user[0].account);
-// 1. 사용자에게 계정을 입력받으세요.
 while (true) {
-  for (var i = 0; i < user.length; i++) {
-    if (inputId === user[i].account) {
-      // 3. 계정이 존재한다면 비밀번호를 입력받으세요.
-      var inputPw = prompt(`비밀번호를 입력하세요`);
-      for (var j = 0; j < i; j++) {
-        if (user[j].password === inputPw) {
-          alert(`${user[j].username}님 환영합니다.`);
-        } else {
-          alert(`다시`);
-        }
-      }
+  var inputAccount = prompt("아이디를 입력하세요.");
+  var foundUser = null;
+  for (var user of userList) {
+    if (inputAccount === user.account) {
+      foundUser = user;
+      break;
     }
   }
-  //2. 존재하지 않는 회원입니다
-  alert(`존재하지 않는 회원입니다.`);
-  break;
+
+  if (foundUser !== null) {
+    var inputPassword = prompt("비밀번호를 입력하세요!");
+
+    if (inputPassword === foundUser.password) {
+      alert(`${foundUser.username}님 환영합니다~~!`);
+      break;
+    } else {
+      alert(`비밀번호가 틀렸습니다.`);
+    }
+  } else {
+    alert(`존재하지 않는 회원입니다.`);
+  }
 }
 
 // else if (inputId !== user[userAccount].account) {

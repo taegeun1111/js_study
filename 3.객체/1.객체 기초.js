@@ -1,5 +1,7 @@
 // 객체 리터럴(값)
-
+makeLine = () => {
+  console.log("-------------here-------------");
+};
 var dog = {
   //프로퍼티 작성
   name: "뽀삐",
@@ -29,12 +31,15 @@ console.log(cat.favorite[0]);
 // (.)점 : ~의
 
 dog.favorite.push("꼬리 흔들기");
+cat.favorite.pop();
+console.log(cat);
 console.log(dog);
 
 //프로퍼티 참조 2
 console.log("---------------------------");
 console.log(dog.injection);
-// console.log(dog[injection]);
+console.log(dog['injection']);
+
 // key를 변수에 저장해놓고 사용할 때
 var fv = "favorite";
 console.log(cat.fv); //undefined
@@ -55,11 +60,13 @@ delete cat.owner;
 
 //프로퍼티 존재 유무 확인
 //key를 반드시 문자열로 표기해야함.
+
 "age" in cat;
 if (!("master" in cat)) {
   cat["master"] = "김또또";
 }
 
+console.log(cat);
 var m = "master";
 if (!("m" in cat)) {
   cat["m"] = "김또또";
@@ -73,5 +80,3 @@ for (var k in dog) {
   //   console.log(k);
   console.log(dog[k]);
 }
-
-
