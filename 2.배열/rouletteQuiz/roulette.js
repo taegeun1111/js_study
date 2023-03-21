@@ -42,7 +42,7 @@ while (true) {
   var deathCount = 0;
   alert(`총을 받았습니다.${addArr[0]}부터 시작합니다.}`);
   //종료조건 : 사람이 1명 남았을때, 총알이 모두 소진되었을때
-  while (bulletNum !== deathCount) {
+  while (true) {
     for (var i = 0; i < addArr.length; i++) {
       alert(
         `${addArr[i]}님의 턴!] 탄창을 회전합니다.\n엔터를 누르면 격발합니다.`
@@ -61,6 +61,7 @@ while (true) {
         break;
       }
     }
+    break;
   }
   alert(
     `실탄이 모두 소진되었습니다. 게임을 종료합니다. \n생존한 인원 : ${addArr}`
