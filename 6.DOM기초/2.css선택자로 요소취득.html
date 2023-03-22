@@ -1,12 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
+    <ul id="fruits">
+        <li class="fr">사과</li>
+        <li class="fr banana">바나나</li>
+        <li class="fr grape">포도</li>
+        <li class="fr">복숭아</li>
+    </ul>
+
+    <script>
+        //css 문법대로 적어야 한다. ('.','#' 등)
+        /*
+        const $grape = document.querySelector('.grape');
+        $grape.textContent = '맛있는 포도';
+        */
+
+        // const $grape = document.querySelector('.fr'); //여러개일 경우 첫번째 값만 리턴
+        // const $grape = document.querySelector('#fruits li:nth-child(3)'); //css문법 그대로 사용 가능
+        // const $grape = document.querySelector('.banana + li'); 포도
+        // const $grape = document.querySelector('#fruits>li'); //사과
+        // $grape.textContent = '맛있는 포도';
+
+        //선택자에 해당하는 모든 요소를 취득
+        //querySelectorAll로 값을 받아오면 배열로 변환해야 한다.(유사배열이 와서)
+        const elements = [...document.querySelectorAll('.fr')];
+        console.log(elements);
+
+        elements.push($grape);
+        console.log(elements);
+        // for (const $li of elements) {
+        //     $li.style.border = '1px dashed skyblue';
+        // }
+        // elements[0].style.background = 'red';
+        const [a, b, c, d] = [...document.querySelectorAll('li')];
+        d.textContent = '어피치';
+        elements.forEach($li => {
+            $li.style.color = blue;
+        })
+    </script>
 </body>
+
 </html>
