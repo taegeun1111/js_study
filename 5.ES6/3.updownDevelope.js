@@ -57,38 +57,35 @@ function makeGameData() {
 }
 //7. 한 게임 진행되는 함수
 function runUpdownGame(gameData) {
+  // gameData 디스트럭처링
+  const { countDown, secret, answer, gameEndFlag } = gameData;
+
   while (true) {
     //10. 함수 넣고 파라미터 gameData 받기
     // const inputResultFlag = inputAnswerAndValidate(gameData.min, gameData.max);
 
     //11. 잘못된 값있으면 다시 실행
     if (!inputAnswerAndValidate(gameData)) continue;
-
     gameData.countDown--;
-
-    if (gameData.secret === gameData.answer) {
-      alert(
-        `정답입니다! ${
-          gameData.initCount - gameData.countDown
-        }번만에 맞췄습니다!`
-      );
+    if (secret === answer) {
+      alert(`정답입니다! ${initCount - countDown}번만에 맞췄습니다!`);
       gameEndFlag = true;
       break;
-    } else if (gameData.secret > gameData.answer) {
+    } else if (secret > answer) {
       alert(`UP!!`);
-      gameData.minValue = gameData.answer + 1;
+      gameData.minValue = answer + 1;
     } else {
       alert(`DOWN!!`);
-      gameData.maxValue = gameData.answer - 1;
+      gameData.maxValue = answer - 1;
     }
 
     // 추가 게임 종료 조건
-    if (gameData.countDown <= 0) {
-      alert(`응 너 졌어~~~ 정답은 ${gameData.secret}이었음ㅋㅋㅋ`);
+    if (countDown <= 0) {
+      alert(`응 너 졌어~~~ 정답은 ${secret}이었음ㅋㅋㅋ`);
       gameData.gameEndFlag = true;
       break;
     } else {
-      alert(`${gameData.countDown}번의 기회가 남았습니다.`);
+      alert(`${countDown}번의 기회가 남았습니다.`);
     }
   }
 }
