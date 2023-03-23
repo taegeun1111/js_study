@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrap">
+        <ul id="fruits">
+            <li class="fr apple">사과</li>
+            <li class="fr banana">바나나</li>
+            <li class="fr grape">포도</li>
+        </ul>
+    </div>
+
+    <div class="box">
+        <!-- <p></p> -->
+    </div>
+
+    <script>
+        const $fruits = document.querySelector('#fruits');
+        console.log($fruits);
+        const [$apple, $banana, $grape] = $fruits.children;
+        console.log($apple);
+/*
+                                const $wrap1 = $fruits.parentElement;
+                                const $wrap2 = $fruits.parentNode;
+                        
+                                const [a, b, c] = [...$wrap1.firstElementChild.children]; //li태그 호출
+                        
+                                const sameFlag = $banana.previousElementSibling;
+                        
+                                console.log(sameFlag);
+                                console.log(sameFlag2);
+                        
+                                const test = $apple.parentElement.parentElement;
+                                console.log(test);
+                        
+                                //closet('css선택자'); 가장 가까운 태그를 찾음
+                                $apple.closest(.)
+                        */
+    </script>
+</body>
+
+</html>

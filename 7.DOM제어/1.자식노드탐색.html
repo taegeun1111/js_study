@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="fruits">
+        <li class="fr apple">사과</li>
+        <li class="fr banana">바나나</li>
+        <li class="fr grape">포도</li>
+    </ul>
+
+    <div class="box">
+        <!-- <p></p> -->
+    </div>
+
+    <script>
+        //ul 요소노드를 취득
+        const $fruits = document.getElementById('fruits');
+
+        console.log($fruits.children);
+
+        const $children = [...$fruits.children];
+        console.log($children);
+
+        const $first1 = $children[0];
+        const $last = $children[$children.length - 1];
+
+        // const $first2 = $fruits.firstChild;
+        const $first3 = $fruits.firstElementChild;
+
+        $first1.style.fontSize = '2em';
+        $last.style.transform = 'rotate(180deg)';
+        $last.style.width = 'fit-content';
+
+        const $box = document.querySelector('.box');
+
+        //hasChildNodes는 공백이 있으면 text도 포함하기 때문에 사용을 하지 않는다.
+        console.log($box.hasChildNodes());
+
+        //자식 요소의 유무 확인
+        console.log(!!$box.children.length);
+        //0이면 falsy(false)를 반환. 1이상이면 true
+
+        //함수로 만들어 사용 가능
+        hasChildren = ($target) => !!$target.children.length;
+
+
+
+    </script>
+</body>
+
+</html>

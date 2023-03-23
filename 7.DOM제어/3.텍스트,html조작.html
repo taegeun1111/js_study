@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #greet span {
+            color: red;
+        }
+
+        #greet::before {
+            /* content: 'what\'s up!'; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="greet">
+        Hello<span>World!</span>
+    </div>
+
+    <script>
+        const $greet = document.getElementById('greet');
+        console.log($greet.textContent);
+
+        // $greet.textContent = '<span>안녕</span>하세요!';
+        $greet.innerHTML = '<span>안녕</span>하세요!';
+        // textcontent는 정확한 target이 필요하다.
+        // text만 변경하고자 할 때 사용
+        // 그렇지 않으면 태그를포함한 전부가 변경된다. 이럴 경우 innerHTML사용
+
+        // 모든 자식태그를 삭제 (전체삭제 기능)
+        // $greet.innerHTML = '';
+
+        // 텍스트 추가(자식 태그를 추가)
+        $greet.innerHTML += '<span> 메롱메롱</span>'
+
+    </script>
+    <!-- 
+        innerText를 사용하면 안되는 경우
+        1. 줄바꿈, 공백이 표시가 안된다.
+        2. 
+
+     -->
+</body>
+
+</html>
