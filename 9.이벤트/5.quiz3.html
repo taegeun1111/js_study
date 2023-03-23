@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .btn {
+            width: 140px;
+            margin: 2px;
+            padding: 10px 20px;
+            background: rgb(162, 25, 25);
+            color: rgb(255, 231, 96);
+            border: none;
+        }
+
+        .drop-content {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .drop-content a {
+            background-color: lightgray;
+            margin: 2px;
+            width: 100px;
+            text-align: center;
+            text-decoration: none;
+            padding: 10px 20px;
+            color: black;
+        }
+
+        /* 추가 */
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dropdown">
+        <button class="btn">Drop</button>
+        <div class="drop-content">
+            <a href="">Menu1</a>
+            <a href="">Menu2</a>
+            <a href="">Menu3</a>
+            <a href="">Menu4</a>
+            <a href="">Menu5</a>
+        </div>
+    </div>
+    <script>
+        const $dropContent = document.querySelector('.drop-content');
+        const $btn = document.querySelector('.btn');
+        // console.log($dropdown);
+        // const [$btn, $dropContent] = $dropdown.
+        // console.log($dropContent);
+        $dropContent.classList.add('hide');
+        $btn.onmouseover = () => {
+            $dropContent.classList.toggle('hide');
+        }
+        $btn.onmouseout = () => {
+            $dropContent.classList.toggle('hide');
+        }
+
+    </script>
+</body>
+
+</html>
