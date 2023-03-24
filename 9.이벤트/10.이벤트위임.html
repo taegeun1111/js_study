@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #fruits {
+            display: flex;
+            list-style: none;
+            padding: 20px;
+
+            border: 2px solid red;
+            flex-wrap: wrap;
+        }
+
+        #fruits li {
+            width: 100px;
+            cursor: pointer;
+            background: orange;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            overflow: auto;
+            text-overflow: ellipsis;
+        }
+
+        .active {
+            color: red;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <ul id="fruits">
+        <li id="apple" class="active">Apple</li>
+        <li id="banana">Banana</li>
+        <li id="grape">Grape</li>
+    </ul>
+
+    <div>선택된 과일: <em class="msg">Apple</em></div>
+    <label>
+        # 새로운 과일 추가하기:
+        <input type="text" class="text-box">
+        <button id="add">추가</button>
+    </label>
+
+    <!-- 자식들이 추가되면 이벤트를 또 추가해줘야 한다. 하지만 부모에게
+    한번 이벤트를 걸어놓으면 따로 추가하지 않아도 된다. -->
+    <script>
+        //li태그들에게 일일히 이벤트를 부여하면
+        //새롭게 추가되는 li들도 또 이벤트를 부여해줘야 한다는 번거로움이 생긴다.
+        //부모태그인 ul에 범용성있는 이벤트를 부여해서
+        //li들이 버블링을 통해 사용하도록 설정한다.
+        //게시판 상단 nav에 사용할 수 있다!
+        const $fruits = document.querySelector('#fruits');
+        $fruits.onclick = e => {
+            //4.이벤트 타겟 제한
+            //matches : target의 css태그와 일치하면 true 그렇지 않으면 false
+            //ul을 클릭하면 false가 나와서 실행이 안된다.
+            console.log(e.target.matches('#fruits li'));
+            if (!e.target.matches('#fruits li')) {
+                return;
+            }
+            /*
+            console.log('클릭이벤트 발생');
+            console.log(e.target.tagName);
+            */
+            //1-1.태그에서 클래스 active를 제거하는 함수
+            const removeActive = () => {
+                [...$fruits.children].forEach($li => {
+                    if ($li.classList.contains('active')) {
+                        $li.classList.remove('active');
+                        return;
+                    }
+                });
+            };
+            //1.기존 active가 붙은 태그에서 active제거
+            removeActive();
+            //2.클릭대상(e.target)에 클래스 액티브를 부여하고
+            // console.log((e.target));
+            e.target.classList.add('active');
+            //3.그 텍스트를 em.msg 태그에 복사한다.
+            const $msg = document.querySelector('.msg');
+            $msg.textContent = e.target.textContent;
+
+
+        };
+        /*
+            입력창에 과일 이름을 쓰고 '추가' 버튼을 누르면 입력창에 있는 텍스트가
+            <li id='텍스트'>텍스트</li>형태로 생성되고 ul의 끝자식으로 추가되어야 한다.
+        */
+        const $inputAdd = document.getElementById('add');
+        const $inputText = document.querySelector('.text-box');
+
+        //엔터쳐도 추가될 수 있게 함수로 변형
+        const makeNewFruit = () => {
+            // $inputAdd.onclick = e => {
+            if ($inputText.value !== "") {
+                $newLi = $fruits.lastElementChild.cloneNode();
+                // const $newLi = document.createElement('li');
+                const text = $inputText.value;
+                $newLi.textContent = text;
+                $newLi.setAttribute('id', text.toLowerCase());
+                $fruits.appendChild($newLi);
+
+                $inputText.value = '';
+
+            } else {
+                alert(`내용을 입력해주세요!`);
+            }
+            // }
+        }
+        $inputAdd.onclick = e => makeNewFruit();
+        $inputText.onkeyup = e => {
+            console.log(e.key);
+            if (e.key === 'Enter') { makeNewFruit(); }
+        }
+
+    </script>
+</body>
+
+</html>

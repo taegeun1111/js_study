@@ -7,6 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        .dropdown {
+            background-color: yellowgreen;
+
+            width: fit-content;
+            /* height: fit-content; */
+            height: auto;
+            overflow: auto;
+        }
+
         .btn {
             width: 140px;
             margin: 2px;
@@ -61,9 +70,14 @@
         $btn.onmouseover = () => {
             $dropContent.classList.toggle('hide');
         }
-        $btn.onmouseout = () => {
+        $btn.parentElement.onmouseleave = () => {
             $dropContent.classList.toggle('hide');
         }
+        /*
+            기능적으로 같지만 버블링의 유무에 차이가 있다.
+            mouseover, mouseout : 버블링 있음
+            mouseenter, mouseleave : 버블링 없음
+        */
 
     </script>
 </body>
